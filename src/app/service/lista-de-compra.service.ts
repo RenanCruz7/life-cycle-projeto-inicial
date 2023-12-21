@@ -1,3 +1,4 @@
+import { AppModule } from './../app.module';
 import { Item } from 'src/app/interfaces/iItem';
 import { Injectable } from '@angular/core';
 
@@ -34,4 +35,21 @@ export class ListaDeCompraService {
   getListaDeCompra(){
     return this.listaDeCompra;
   }
+
+  criarItem(nomeDoItem: string){
+    const id = this.listaDeCompra.length +1
+    const item: Item ={
+      id: id,
+      nome:nomeDoItem,
+      data: new Date().toLocaleDateString('pt-br'),
+      comprado: false
+    }
+    return item
+  }
+
+  adicionarItemNaLista(nomeDoItem: string){
+    const item = this.criarItem(nomeDoItem)
+    this.listaDeCompra.push(item)
+  }
+
 }
